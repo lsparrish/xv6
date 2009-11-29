@@ -125,10 +125,6 @@ print: xv6.pdf
 
 # run in emulators
 
-bochs : fs.img xv6.img
-	if [ ! -e .bochsrc ]; then ln -s dot-bochsrc .bochsrc; fi
-	bochs -q
-
 qemu: fs.img xv6.img
 	qemu -parallel stdio -hdb fs.img -hda xv6.img
 
