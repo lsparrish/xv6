@@ -78,7 +78,7 @@ tags: $(OBJS) bootother.S _init
 vectors.S: vectors.pl
 	perl vectors.pl > vectors.S
 
-ULIB = ulib.o usys.o printf.o umalloc.o
+ULIB = xv6lib/ulib.o xv6lib/usys.o xv6lib/printf.o xv6lib/umalloc.o
 
 _%: apps/%.o $(ULIB)
 	$(LD) $(LDFLAGS) -N -e main -Ttext 0 -o $@ $^
@@ -111,7 +111,8 @@ fs.img: mkfs README $(UPROGS)
 clean: 
 	rm -f *.tex *.dvi *.idx *.aux *.log *.ind *.ilg \
 	*.o *.d *.asm *.sym vectors.S parport.out \
-	bootblock kernel xv6.img fs.img mkfs \
+	bootblock kernel mkfs \
+	apps/*.d xv6lib/*.d \
 	$(UPROGS)
 
 # make a printout
